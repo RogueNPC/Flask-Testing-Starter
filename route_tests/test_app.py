@@ -58,22 +58,46 @@ class FroyoTests(TestCase):
     def test_froyo_results_scenario1(self):
         # TODO: Fill in this function to test the show_froyo_results route under a
         # specific scenario.
-        pass
+        result = app.test_client().get('/froyo_results?flavor=tart&toppings=almonds')
+
+        self.assertEqual(result.status_code, 200)
+
+        result_page_text = result.get_data(as_text=True)
+        expected_page_text = 'You ordered tart flavored Fro-Yo with toppings almonds!'
+        self.assertEqual(expected_page_text, result_page_text)
 
     def test_froyo_results_scenario2(self):
         # TODO: Fill in this function to test the show_froyo_results route under a
         # specific scenario.
-        pass
+        result = app.test_client().get('/froyo_results?flavor=strawberry&toppings=strawberry')
+
+        self.assertEqual(result.status_code, 200)
+
+        result_page_text = result.get_data(as_text=True)
+        expected_page_text = 'You ordered strawberry flavored Fro-Yo with toppings strawberry!'
+        self.assertEqual(expected_page_text, result_page_text)
 
     def test_froyo_results_edgecase1(self):
         # TODO: Fill in this function to test the show_froyo_results route under a
         # specific EDGE CASE scenario.
-        pass
+        result = app.test_client().get('/froyo_results?flavor=&toppings=')
+
+        self.assertEqual(result.status_code, 200)
+
+        result_page_text = result.get_data(as_text=True)
+        expected_page_text = 'You ordered  flavored Fro-Yo with toppings !'
+        self.assertEqual(expected_page_text, result_page_text)
 
     def test_froyo_results_edgecase2(self):
         # TODO: Fill in this function to test the show_froyo_results route under a
         # specific EDGE CASE scenario.
-        pass
+        result = app.test_client().get('/froyo_results?flavor=tart&toppings=')
+
+        self.assertEqual(result.status_code, 200)
+
+        result_page_text = result.get_data(as_text=True)
+        expected_page_text = 'You ordered tart flavored Fro-Yo with toppings !'
+        self.assertEqual(expected_page_text, result_page_text)
 
 
 #######################
