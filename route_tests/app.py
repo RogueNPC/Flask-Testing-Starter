@@ -1,7 +1,5 @@
 from flask import Flask, request
 
-from unit_tests.string_functions import *
-
 app = Flask(__name__)
 
 @app.route('/')
